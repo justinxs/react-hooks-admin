@@ -18,6 +18,9 @@ const AuthRouter = (props: { children: JSX.Element }) => {
 	// * 在跳转路由之前，清除所有的请求
 	axiosCanceler.removeAllPending();
 
+	// 已登录去登陆页面重定向首页
+	if (pathname === '/login' && token) return <Navigate to={HOME_URL} replace />;
+
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
 	if (!route.meta?.requiresAuth) return props.children;
 
