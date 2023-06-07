@@ -13,6 +13,8 @@ const axiosCanceler = new AxiosCanceler();
 const AuthRouter = (props: { children: JSX.Element }) => {
 	const { pathname } = useLocation();
 	const route = searchRoute(pathname, rootRouter);
+	const token = store.getState().global.token;
+
 	// * 在跳转路由之前，清除所有的请求
 	axiosCanceler.removeAllPending();
 
@@ -20,7 +22,6 @@ const AuthRouter = (props: { children: JSX.Element }) => {
 	if (!route.meta?.requiresAuth) return props.children;
 
 	// * 判断是否有Token
-	const token = store.getState().global.token;
 	if (!token) return <Navigate to="/login" replace />;
 
 	// * Dynamic Router(动态路由，根据后端返回的菜单数据生成的一维数组)

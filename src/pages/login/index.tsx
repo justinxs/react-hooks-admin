@@ -5,6 +5,7 @@ import logo from '@/assets/images/logo.png';
 import './index.less';
 
 const Login = () => {
+	console.log('lollllllllllllllllllllll')
 	return (
 		<div className="login-container">
 			<SwitchDark />
